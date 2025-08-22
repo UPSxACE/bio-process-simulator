@@ -27,17 +27,7 @@ class EntityManagerTest {
     EntityManager em;
 
     private Bioreactor sampleBioreactor(){
-        return Bioreactor.builder()
-                .status(BioreactorStatus.ENDED)
-                .cellType("CHO-K1")
-                .lastSampleTime(LocalDateTime.MIN)
-                .pH(0)
-                .temperature(0)
-                .dissolvedOxygen(0)
-                .glucose(0)
-                .lactate(0)
-                .productTiter(0)
-                .build();
+        return new Bioreactor("CHO-K1");
     }
 
     private <T> void deleteAllOfClass(Class<T> clazz){
