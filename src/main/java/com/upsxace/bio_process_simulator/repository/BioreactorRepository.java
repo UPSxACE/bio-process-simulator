@@ -3,9 +3,11 @@ package com.upsxace.bio_process_simulator.repository;
 import com.upsxace.bio_process_simulator.infrastructure.orm.EntityManager;
 import com.upsxace.bio_process_simulator.infrastructure.orm.Repository;
 import com.upsxace.bio_process_simulator.model.Bioreactor;
+import com.upsxace.bio_process_simulator.model.enums.BioreactorStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,7 +32,20 @@ public class BioreactorRepository implements Repository<Bioreactor> {
     }
 
     @Override
+    public Set<Bioreactor> saveAll(Set<Bioreactor> entities){
+        return em.saveAll(Bioreactor.class, entities);
+    }
+
+    @Override
     public void delete(Bioreactor entity) {
         em.delete(Bioreactor.class, entity);
+    }
+
+    public Set<Bioreactor> findByStatus(BioreactorStatus status){
+        return em.find(Bioreactor.class, b -> b.getStatus().equals(status)); // TODO: add test
+    }
+
+    public Set<Bioreactor> findByStatusAndIdIn(BioreactorStatus status, List<UUID> ids){
+        return em.find(Bioreactor.class, b -> b.getStatus().equals(status) && ids.contains(b.getId())); // TODO: add test
     }
 }

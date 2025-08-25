@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/bioreactors")
 @RequiredArgsConstructor
-public class BioreactorController {
+public class BioreactorsController {
     private final BioreactorService bioreactorService;
 
     @PostMapping("/connect")

@@ -17,22 +17,16 @@ public class Bioreactor {
     private BioreactorStatus status;
     private String cellType;
     private LocalDateTime lastSampleTime;
-    private float pH;
-    private float temperature;
-    private float dissolvedOxygen;
-    private float glucose;
-    private float lactate;
-    private float productTiter;
+    private Float pH;
+    private Float temperature;
+    private Float dissolvedOxygen;
+    private Float glucose;
+    private Float lactate;
+    private Float productTiter;
 
     public Bioreactor(String cellType){
         this.status = BioreactorStatus.ENDED;
         this.cellType = cellType;
         this.lastSampleTime = LocalDateTime.MIN;
-        this.pH = 0;
-        this.temperature = 0;
-        this.dissolvedOxygen = 0;
-        this.glucose = 0;
-        this.lactate = 0;
-        this.productTiter = 0;
     }
 }

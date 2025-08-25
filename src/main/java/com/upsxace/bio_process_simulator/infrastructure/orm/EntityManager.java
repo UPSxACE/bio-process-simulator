@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Component
@@ -73,6 +74,18 @@ public class EntityManager {
         }
     }
 
+    // FIXME: make copies on query and insert methods instead of returning references & add tests about copy vs references
+
+    @SuppressWarnings("unchecked")
+    public <T> Set<T> find(Class<T> type, Predicate<T> filter){
+        // TODO: add test
+        return database.get(classNameToEntityName.get(type.getName()))
+                .stream()
+                .filter((Predicate<Object>) filter)
+                .map(type::cast)
+                .collect(Collectors.toSet());
+    }
+
     // FIXME: refactor class to add id hashmap
     public <T> T findById(Class<T> type, UUID id){
         return database.get(classNameToEntityName.get(type.getName()))
@@ -104,6 +117,14 @@ public class EntityManager {
             return list;
         });
         return entity;
+    }
+
+    // TODO: add test
+    public <T> Set<T> saveAll(Class<T> type, Set<T> entities) {
+        for(var entity : entities){
+            save(type, entity);
+        }
+        return entities;
     }
 
     public <T> void delete(Class<T> type, T entity){
