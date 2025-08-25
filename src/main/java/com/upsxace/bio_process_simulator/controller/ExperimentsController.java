@@ -6,10 +6,10 @@ import com.upsxace.bio_process_simulator.service.ExperimentsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/experiments")
@@ -19,8 +19,17 @@ public class ExperimentsController {
 
     @PostMapping
     public ResponseEntity<Experiment> initiateExperiment(
-            @RequestBody @Valid InitiateExperimentRequest request
+            @RequestBody @Valid InitiateExperimentRequest request,
+            UriComponentsBuilder uriBuilder
     ){
-        return ResponseEntity.ok(experimentsService.initiateExperiment(request));
+        var uri = uriBuilder.path("/experiments").build().toUri();
+        return ResponseEntity.created(uri).body(experimentsService.initiateExperiment(request));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Experiment>> getAllExperiments(
+            @RequestParam(required = false) Boolean active
+    ){
+        return ResponseEntity.ok(experimentsService.getAllExperiments(active));
     }
 }

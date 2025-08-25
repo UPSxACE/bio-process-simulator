@@ -114,4 +114,12 @@ public class ExperimentsService {
 
         return experiment;
     }
+
+    public List<Experiment> getAllExperiments(Boolean active){
+        if(active == null){
+            return new ArrayList<>(experimentRepository.findAll());
+        }
+
+        return new ArrayList<>(experimentRepository.findByActive(active));
+    }
 }
