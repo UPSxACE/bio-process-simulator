@@ -29,4 +29,8 @@ public class BioreactorService {
     public List<CreatedBioreactorDto> connectBioreactor(String cellType){
         return connectBioreactor(1, cellType);
     }
+
+    public List<Bioreactor> getAllBioreactors(){
+       return new ArrayList<>(bioreactorRepository.findAll());
+    }
 }

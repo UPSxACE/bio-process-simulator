@@ -76,7 +76,7 @@ public class ExperimentsService {
         // setup bioreactors and save
         bioreactors.forEach(b -> {
             b.setProductTiter(0f);
-            b.setPH(request.getCellInitialValues().getPH());
+            b.setPh(request.getCellInitialValues().getPh());
             b.setTemperature(request.getCellInitialValues().getTemperature());
             b.setDissolvedOxygen(request.getCellInitialValues().getDissolvedOxygen());
             b.setGlucose(request.getCellInitialValues().getGlucose());
@@ -100,7 +100,7 @@ public class ExperimentsService {
                         request.getConstraints() == null
                                 ? new ExperimentConstraintsVo(null, null, null, null, null)
                                 : new ExperimentConstraintsVo(
-                                resolveConstraintMinMaxVo(request.getConstraints().getPH()),
+                                resolveConstraintMinMaxVo(request.getConstraints().getPh()),
                                 resolveConstraintMinMaxVo(request.getConstraints().getTemperature()),
                                 resolveConstraintMinMaxVo(request.getConstraints().getDissolvedOxygen()),
                                 resolveConstraintMinMaxVo(request.getConstraints().getGlucose()),

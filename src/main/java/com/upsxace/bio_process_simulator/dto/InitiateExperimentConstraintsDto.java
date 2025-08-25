@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 @Data
 public class InitiateExperimentConstraintsDto {
     @Valid
-    private final InitiateExperimentMinMaxConstraintsDto pH;
+    private final InitiateExperimentMinMaxConstraintsDto ph;
     @Valid
     private final InitiateExperimentMinMaxConstraintsDto temperature;
     @Valid

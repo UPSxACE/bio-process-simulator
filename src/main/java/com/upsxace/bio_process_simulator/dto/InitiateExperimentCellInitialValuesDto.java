@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 @Data
 public class InitiateExperimentCellInitialValuesDto {
     @DecimalMin("0.0")
-    private final Float pH;
+    private final Float ph;
     @DecimalMin("0.0")
     private final Float temperature;
     @DecimalMin("0.0")
