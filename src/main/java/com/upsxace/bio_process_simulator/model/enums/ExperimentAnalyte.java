@@ -1,7 +1,7 @@
 package com.upsxace.bio_process_simulator.model.enums;
 
 public enum ExperimentAnalyte {
-    pH,
+    ph,
     temperature,
     dissolvedOxygen,
     glucose,

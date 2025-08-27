@@ -41,11 +41,19 @@ public class BioreactorRepository implements Repository<Bioreactor> {
         em.delete(Bioreactor.class, entity);
     }
 
+    public Set<Bioreactor> findByIdIn(List<UUID> ids){
+        return em.find(Bioreactor.class, b -> ids.contains(b.getId())); // TODO: add test
+    }
+
     public Set<Bioreactor> findByStatus(BioreactorStatus status){
         return em.find(Bioreactor.class, b -> b.getStatus().equals(status)); // TODO: add test
     }
 
     public Set<Bioreactor> findByStatusAndIdIn(BioreactorStatus status, List<UUID> ids){
         return em.find(Bioreactor.class, b -> b.getStatus().equals(status) && ids.contains(b.getId())); // TODO: add test
+    }
+
+    public int countByStatusInAndIdIn(List<BioreactorStatus> statuses, List<UUID> ids){
+        return em.find(Bioreactor.class, b -> statuses.contains(b.getStatus()) && ids.contains(b.getId())).size(); // TODO: add test
     }
 }

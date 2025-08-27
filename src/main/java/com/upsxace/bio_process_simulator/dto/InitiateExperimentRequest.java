@@ -22,6 +22,7 @@ public class InitiateExperimentRequest {
     @NotBlank
     private final String cellType;
     @NotNull
+    @Valid
     private final InitiateExperimentCellInitialValuesDto cellInitialValues;
     @NotNull
     @Min(1)
