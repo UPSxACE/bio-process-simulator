@@ -91,4 +91,8 @@ public class ReportService {
 
         reportRepository.save(Report.builder().summary(report).build());
     }
+
+    public List<Report> getAllReports(){
+        return new ArrayList<>(reportRepository.findAll());
+    }
 }
